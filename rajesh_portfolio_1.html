@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajesh Gangumolu — Cloud & IT Support Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0B0F14;
+    --surface: #121922;
+    --surface-2: #19222D;
+    --line: #232E3A;
+    --text: #E8EDF2;
+    --text-dim: #8B98A8;
+    --text-faint: #5C6776;
+    --mint: #2ED88A;
+    --mint-dim: #1B7A52;
+    --amber: #FFB454;
+    --amber-dim: #8A6526;
+    --mono: 'JetBrains Mono', monospace;
+    --disp: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:48px 48px;
+    opacity:0.12;
+    pointer-events:none;
+    z-index:0;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:0 28px; position:relative; z-index:1;}
+
+  /* ---- top bar ---- */
+  .topbar{
+    border-bottom:1px solid var(--line);
+    padding:18px 0;
+    position:sticky; top:0;
+    background:rgba(11,15,20,0.92);
+    backdrop-filter:blur(6px);
+    z-index:10;
+  }
+  .topbar .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .brand{font-family:var(--mono); font-size:14px; color:var(--text-dim); letter-spacing:0.5px;}
+  .brand b{color:var(--text);}
+  .status-pill{
+    display:flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:12px; color:var(--mint);
+    border:1px solid var(--mint-dim); border-radius:20px;
+    padding:5px 12px;
+  }
+  .dot{width:7px; height:7px; border-radius:50%; background:var(--mint); animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.35;}}
+
+  /* ---- hero ---- */
+  .hero{padding:72px 0 56px;}
+  .eyebrow{font-family:var(--mono); font-size:13px; color:var(--mint); letter-spacing:1px; margin-bottom:18px;}
+  .eyebrow::before{content:"$ "; color:var(--text-faint);}
+  h1{
+    font-family:var(--disp); font-weight:700;
+    font-size:clamp(34px,5vw,52px); line-height:1.12;
+    color:var(--text); margin-bottom:18px;
+  }
+  h1 span{color:var(--mint);}
+  .lede{font-size:17px; color:var(--text-dim); max-width:560px; margin-bottom:36px;}
+
+  .metrics{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line); border-radius:10px;
+    overflow:hidden; margin-bottom:8px;
+  }
+  .metric{background:var(--surface); padding:18px 16px;}
+  .metric .num{font-family:var(--mono); font-size:24px; font-weight:500; color:var(--text);}
+  .metric .lbl{font-size:12px; color:var(--text-faint); margin-top:4px;}
+
+  .cta-row{display:flex; gap:12px; margin-top:32px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--body); font-weight:500; font-size:14px;
+    padding:11px 20px; border-radius:8px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:all 0.15s ease;
+  }
+  .btn-primary{background:var(--mint); color:#062318;}
+  .btn-primary:hover{background:#3FE89B;}
+  .btn-ghost{border:1px solid var(--line); color:var(--text-dim);}
+  .btn-ghost:hover{border-color:var(--text-faint); color:var(--text);}
+
+  /* ---- section shell ---- */
+  section{padding:56px 0; border-top:1px solid var(--line);}
+  .sec-head{display:flex; align-items:baseline; gap:14px; margin-bottom:32px;}
+  .sec-tag{font-family:var(--mono); font-size:12px; color:var(--text-faint);}
+  .sec-title{font-family:var(--disp); font-size:24px; font-weight:500; color:var(--text);}
+
+  /* ---- stack / skills as services ---- */
+  .stack-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .stack-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:18px;
+  }
+  .stack-card .head{display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;}
+  .stack-card .title{font-family:var(--disp); font-weight:500; font-size:15px;}
+  .stack-card .badge{
+    font-family:var(--mono); font-size:10px; color:var(--mint);
+    border:1px solid var(--mint-dim); border-radius:4px; padding:2px 6px;
+  }
+  .stack-card ul{list-style:none;}
+  .stack-card li{
+    font-size:13px; color:var(--text-dim); padding:3px 0;
+    font-family:var(--mono);
+  }
+  .stack-card li::before{content:"› "; color:var(--text-faint);}
+
+  /* ---- incident log = experience ---- */
+  .log{border:1px solid var(--line); border-radius:10px; overflow:hidden;}
+  .log-row{
+    display:grid; grid-template-columns:108px 1fr 84px;
+    gap:16px; padding:16px 18px;
+    border-bottom:1px solid var(--line);
+    align-items:start;
+  }
+  .log-row:last-child{border-bottom:none;}
+  .log-id{font-family:var(--mono); font-size:12px; color:var(--text-faint); padding-top:2px;}
+  .log-body .role{font-family:var(--disp); font-weight:500; font-size:16px; margin-bottom:2px;}
+  .log-body .org{font-size:13px; color:var(--text-dim); margin-bottom:10px;}
+  .log-body p{font-size:14px; color:var(--text-dim); margin-bottom:6px;}
+  .log-status{
+    font-family:var(--mono); font-size:11px; color:var(--mint);
+    background:rgba(46,216,138,0.08); border:1px solid var(--mint-dim);
+    border-radius:6px; padding:4px 8px; height:fit-content;
+    text-align:center;
+  }
+
+  /* ---- certifications as deployments ---- */
+  .deploy-list{display:flex; flex-direction:column; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden;}
+  .deploy{
+    background:var(--surface); padding:14px 18px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .deploy-name{font-size:14px; color:var(--text);}
+  .deploy-name span{display:block; font-family:var(--mono); font-size:11px; color:var(--text-faint); margin-top:2px;}
+  .deploy-tag{
+    font-family:var(--mono); font-size:11px; color:var(--amber);
+    background:rgba(255,180,84,0.08); border:1px solid var(--amber-dim);
+    border-radius:6px; padding:4px 9px; white-space:nowrap;
+  }
+
+  /* ---- education ---- */
+  .edu-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px 0;
+  }
+  .edu-row .deg{font-family:var(--disp); font-size:16px; font-weight:500;}
+  .edu-row .school{font-size:13px; color:var(--text-dim); margin-top:3px;}
+  .edu-row .yr{font-family:var(--mono); font-size:13px; color:var(--text-faint);}
+
+  /* ---- contact / footer ---- */
+  .contact-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  .contact-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:10px;
+    padding:18px; text-decoration:none; display:block;
+    transition:border-color 0.15s ease;
+  }
+  .contact-card:hover{border-color:var(--mint-dim);}
+  .contact-card .k{font-family:var(--mono); font-size:11px; color:var(--text-faint); margin-bottom:6px;}
+  .contact-card .v{font-size:14px; color:var(--text);}
+
+  footer{
+    border-top:1px solid var(--line); padding:28px 0 48px;
+    font-family:var(--mono); font-size:12px; color:var(--text-faint);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  @media (max-width:640px){
+    .metrics{grid-template-columns:repeat(2,1fr);}
+    .stack-grid{grid-template-columns:1fr;}
+    .contact-grid{grid-template-columns:1fr;}
+    .log-row{grid-template-columns:1fr; gap:8px;}
+    .log-status{width:fit-content;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand"><b>rajesh</b>@cloud-support</div>
+    <div class="status-pill"><span class="dot"></span>open to opportunities</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <div class="eyebrow">whoami</div>
+    <h1>Keeping cloud infrastructure<br>online, one <span>incident</span> at a time.</h1>
+    <p class="lede">Rajesh Gangumolu — Cloud & IT Support Engineer based in Hyderabad. AWS, ServiceNow, Active Directory, Linux/Windows administration. 1.5 years resolving what breaks before it becomes a problem.</p>
+
+    <div class="metrics">
+      <div class="metric"><div class="num">1.5 yrs</div><div class="lbl">in production support</div></div>
+      <div class="metric"><div class="num">100+</div><div class="lbl">tickets resolved / month</div></div>
+      <div class="metric"><div class="num">L1/L2</div><div class="lbl">support tier</div></div>
+      <div class="metric"><div class="num">5</div><div class="lbl">cloud certifications</div></div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="mailto:rajeshgangumolu906@gmail.com">Email me ↗</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/gangumolu-rajesh-001795191/" target="_blank">LinkedIn ↗</a>
+      <a class="btn btn-ghost" href="tel:+919390749252">+91 93907 49252</a>
+    </div>
+  </section>
+
+  <section id="stack">
+    <div class="sec-head">
+      <span class="sec-tag">01</span>
+      <span class="sec-title">Stack</span>
+    </div>
+    <div class="stack-grid">
+      <div class="stack-card">
+        <div class="head"><span class="title">Cloud</span><span class="badge">core</span></div>
+        <ul>
+          <li>AWS EC2, S3, IAM</li>
+          <li>CloudWatch, VPC</li>
+          <li>Microsoft Azure, Azure AD</li>
+        </ul>
+      </div>
+      <div class="stack-card">
+        <div class="head"><span class="title">ITSM & Tools</span><span class="badge">daily</span></div>
+        <ul>
+          <li>ServiceNow</li>
+          <li>Incident / Problem Mgmt</li>
+          <li>ITIL framework</li>
+        </ul>
+      </div>
+      <div class="stack-card">
+        <div class="head"><span class="title">Identity</span><span class="badge">core</span></div>
+        <ul>
+          <li>Active Directory</li>
+          <li>Office 365, Exchange</li>
+          <li>Role-based access control</li>
+        </ul>
+      </div>
+      <div class="stack-card">
+        <div class="head"><span class="title">Systems</span><span class="badge">core</span></div>
+        <ul>
+          <li>Linux & Windows Server</li>
+          <li>Patch management</li>
+          <li>Remote desktop support</li>
+        </ul>
+      </div>
+      <div class="stack-card">
+        <div class="head"><span class="title">Networking</span><span class="badge">support</span></div>
+        <ul>
+          <li>TCP/IP, DNS, DHCP</li>
+          <li>VPN, LAN/WAN</li>
+          <li>Network troubleshooting</li>
+        </ul>
+      </div>
+      <div class="stack-card">
+        <div class="head"><span class="title">Languages</span><span class="badge">fluent</span></div>
+        <ul>
+          <li>English</li>
+          <li>Telugu</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head">
+      <span class="sec-tag">02</span>
+      <span class="sec-title">Incident log — experience</span>
+    </div>
+    <div class="log">
+      <div class="log-row">
+        <div class="log-id">INC-0001</div>
+        <div class="log-body">
+          <div class="role">Process Associate — Cloud & IT Support</div>
+          <div class="org">Genpact, Hyderabad · 1 yr 5 mo</div>
+          <p>Provided L1/L2 support across hardware, software, OS and application issues within SLA timelines.</p>
+          <p>Monitored AWS infrastructure with CloudWatch, managed EC2 provisioning and IAM access control.</p>
+          <p>Administered Active Directory and Azure AD, resolved network incidents (DNS, DHCP, VPN), and closed 100+ ServiceNow tickets monthly with full SLA compliance.</p>
+        </div>
+        <div class="log-status">resolved</div>
+      </div>
+      <div class="log-row">
+        <div class="log-id">INC-0002</div>
+        <div class="log-body">
+          <div class="role">Application Monitoring & Incident Management</div>
+          <div class="org">Project · AWS, CloudWatch, Linux, ServiceNow</div>
+          <p>Performed daily health checks on cloud-hosted applications, investigated alerts to minimize downtime, and maintained incident documentation across infrastructure teams.</p>
+        </div>
+        <div class="log-status">resolved</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="certs">
+    <div class="sec-head">
+      <span class="sec-tag">03</span>
+      <span class="sec-title">Deployments — certifications</span>
+    </div>
+    <div class="deploy-list">
+      <div class="deploy"><div class="deploy-name">Cloud Infrastructure Analyst<span>NASSCOM</span></div><div class="deploy-tag">Jun 2026</div></div>
+      <div class="deploy"><div class="deploy-name">IT Technical Support<span>NASSCOM</span></div><div class="deploy-tag">Jun 2026</div></div>
+      <div class="deploy"><div class="deploy-name">Cloud Security Analyst<span>NASSCOM</span></div><div class="deploy-tag">Jun 2026</div></div>
+      <div class="deploy"><div class="deploy-name">AI DevOps Analyst<span>NASSCOM</span></div><div class="deploy-tag">Jun 2026</div></div>
+      <div class="deploy"><div class="deploy-name">AI Data Engineering Analyst<span>NASSCOM</span></div><div class="deploy-tag">Jun 2026</div></div>
+      <div class="deploy"><div class="deploy-name">QA Testing & Selenium WebDriver<span>LiveTech</span></div><div class="deploy-tag">complete</div></div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="sec-head">
+      <span class="sec-tag">04</span>
+      <span class="sec-title">Education</span>
+    </div>
+    <div class="edu-row" style="border-bottom:1px solid var(--line);">
+      <div>
+        <div class="deg">B.Sc. Computer Science</div>
+        <div class="school">Pragathi Modern College, Andhra University</div>
+      </div>
+      <div class="yr">2022</div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="sec-head">
+      <span class="sec-tag">05</span>
+      <span class="sec-title">Connect</span>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:rajeshgangumolu906@gmail.com">
+        <div class="k">email</div>
+        <div class="v">rajeshgangumolu906@gmail.com</div>
+      </a>
+      <a class="contact-card" href="tel:+919390749252">
+        <div class="k">phone</div>
+        <div class="v">+91 93907 49252</div>
+      </a>
+      <a class="contact-card" href="https://www.linkedin.com/in/gangumolu-rajesh-001795191/" target="_blank">
+        <div class="k">linkedin</div>
+        <div class="v">gangumolu-rajesh</div>
+      </a>
+      <div class="contact-card">
+        <div class="k">location</div>
+        <div class="v">Hyderabad, Telangana — open to relocation</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Rajesh Gangumolu</span>
+    <span>uptime: actively job hunting · status: immediate joiner</span>
+  </footer>
+
+</div>
+</body>
+</html>
